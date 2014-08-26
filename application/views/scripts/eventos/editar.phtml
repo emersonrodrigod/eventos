@@ -1,0 +1,113 @@
+<div class="row-fluid">
+    <h2>Editar Evento</h2>
+
+    <hr>
+
+    <form method="post" id="usuario">
+        <div class="row-fluid">
+            <div class="span1 txtCenter">
+                <i class="icon-time icon-3x muted"></i>
+            </div>
+            <div class="span11">
+                <div class="controls-row">
+                    <div class="control-group">
+                        <label class="control-label">
+                            <label for="nome">Nome</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="nome" class="input-xxlarge" value="<?php echo $this->evento->nome; ?>">							
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls-row">
+                    <div class="control-group  label-inline">
+                        <label class="control-label">
+                            <label for="realizacao">Data de Realização</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="realizacao" class="input-medium datepicker" value="<?php echo date("d/m/Y",strtotime($this->evento->realizacao)); ?>">							
+                        </div>
+                    </div>
+                    <div class="control-group  label-inline">
+                        <label class="control-label">
+                            <label for="inicio">Hora de inicio</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="horaInicio" id="inicio" class="input-medium hora" value="<?php echo $this->evento->horaInicio; ?>">							
+                        </div>
+                    </div>
+                    <div class="control-group  label-inline">
+                        <label class="control-label">
+                            <label for="previsaoTermino">Previsão de Término</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="previsaoTermino" class="input-medium hora" value="<?php echo $this->evento->previsaoTermino; ?>">							
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls-row">
+                    <div class="control-group">
+                        <label class="control-label">
+                            <label for="local">Local</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="local" class="input-xxlarge" value="<?php echo $this->evento->local; ?>">							
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls-row">
+                    <div class="control-group label-inline">
+                        <label class="control-label">
+                            <label for="responsavel">Responsável</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="responsavel" class="input-large" value="<?php echo $this->evento->responsavel; ?>">							
+                        </div>
+                    </div>
+
+                    <div class="control-group label-inline">
+                        <label class="control-label">
+                            <label for="previsaoTermino">Máximo de Inscrições</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="maximoInscricoes" class="input-medium" value="<?php echo $this->evento->maximoInscricoes; ?>">							
+                        </div>
+                    </div>
+                    
+                      <div class="control-group label-inline">
+                        <label class="control-label">
+                            <label for="valor">Valor Inscrições</label>
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="valor" class="input-medium money" value="<?php echo $this->evento->valor; ?>">							
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" id="submitbutton" class="btn btn-primary" value="Salvar">  
+            <a href="/eventos" class="btn">Cancelar</a>
+        </div>
+
+    </form>
+
+    <script type="text/javascript">
+        $('#usuario').validate({
+            rules: {
+                nome: {required: true, minLenght: 2},
+                realizacao: {required: true},
+                horaInicio: {required: true},
+                previsaoTermino: {required: true},
+                local: {required: true},
+                responsavel: {required: true},
+            }
+        });
+    </script>  
+
+</div>

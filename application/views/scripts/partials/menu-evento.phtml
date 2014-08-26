@@ -1,0 +1,21 @@
+<?php
+$controller = Zend_Controller_Front::getInstance();
+$controlerName = $controller->getRequest()->getControllerName();
+?>
+<div class="span3 well">
+
+    <ul class="nav nav-list">
+        <li class="nav-header"><i class="icon-cogs"></i> Ações</li>
+        <li <?php echo ($controlerName == 'eventos' ? 'class="active"' : ''); ?>><a href="/eventos/detalhes/id/<?php echo $this->evento->id; ?>">Página Inicial do evento</a></li>
+        <li <?php echo ($controlerName == 'divulgadores' ? 'class="active"' : ''); ?>><a href="/divulgadores/evento/<?php echo $this->evento->id; ?>">Divulgadores</a></li>
+        <li <?php echo ($controlerName == 'inscricoes' ? 'class="active"' : ''); ?>><a href="/inscricoes/evento/<?php echo $this->evento->id; ?>">Inscrições</a></li>
+        <li <?php echo ($controlerName == 'despesas' ? 'class="active"' : ''); ?>><a href="">Despesas</a></li>
+        <li <?php echo ($controlerName == 'tarefas' ? 'class="active"' : ''); ?>><a href="">Tarefas</a></li>
+        <li>
+            <a href="">Relatórios</a>
+            <ul>
+                <li><a href="">À receber por Divulgador</a></li>
+            </ul>
+        </li>
+    </ul>   
+</div>
