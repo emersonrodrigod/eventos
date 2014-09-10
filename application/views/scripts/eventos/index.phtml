@@ -25,7 +25,7 @@
                         <td><a href="/eventos/editar/id/<?php echo $evento->id; ?>"><?php echo $evento->nome; ?></a></td>
                         <td><?php echo date("d/m/Y", strtotime($evento->realizacao)); ?></td>
                         <td class="txtCenter"><?php echo $evento->maximoInscricoes; ?></td>
-                        <td class="txtCenter">R$ <?php echo number_format($evento->valor, 2, ',', '.'); ?></td>
+                        <td class="txtCenter"><?php echo Zend_Registry::get('currency')->toCurrency($evento->valor); ?></td>
                         <td class="txtCenter"><?php echo $evento->situacao ?></td>
                         <td>
                             <a href="/eventos/editar/id/<?php echo $evento->id; ?>" class="btn btn-small"><i class="icon-edit" title="Editar Evento"></i></a>

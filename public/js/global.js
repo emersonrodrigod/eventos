@@ -155,11 +155,6 @@ $(function() {
                 $('.datepicker').datepicker('hide');
             });
 
-    $('*[data-toggle=tooltip]').tooltip({
-        trigger: 'focus',
-        placement: 'bottom'
-    });
-
 });
 
 $(function() {

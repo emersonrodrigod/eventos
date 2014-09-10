@@ -11,7 +11,7 @@
         <li><a href="/">Visão Geral</a> <span class="divider">/</span></li>
         <li><a href="/eventos">Eventos</a> <span class="divider">/</span></li>
         <li><a href="/eventos/detalhes/id/<?php echo $this->evento->id; ?>"><?php echo $this->evento->nome; ?></a> <span class="divider">/</span></li>
-        <li class="active">Inscrições</li>
+        <li class="active">Despesas</li>
     </ul>
 
     <div class="row-fluid">
@@ -19,40 +19,42 @@
         <?php include(APPLICATION_PATH . '/views/scripts/partials/menu-evento.phtml'); ?>
 
         <div class="span9">
-            <p><a href="/inscricoes/novo/evento/<?php echo $this->evento->id; ?>" class="btn btn-primary"><i class="icon-user"></i> &nbsp; Nova Inscrição</a></p>
+            <p><a href="/lancamentos/novo/evento/<?php echo $this->evento->id; ?>" class="btn btn-primary"><i class="icon-resize-full"></i> &nbsp; Nova Despesa</a></p>
 
             <table class="table table-hover dataTable">
                 <thead>
                     <tr>
                         <th width="5%">#id</th>
-                        <th>Nome</th>
-                        <th class="hidden-phone hidden-tablet">Telefone</th>
-                        <th>Divulgador</th>
+                        <th>Descricao</th>
+                        <th>Vencimento</th>
+                        <th>Valor</th>
                         <th>Situação</th>
                         <th width="17%">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($this->inscricoes as $inscricao) : ?>
+                    <?php foreach ($this->lancamentos as $lancamento) : ?>
                         <tr>
-                            <td><?php echo $inscricao->id; ?></td>
-                            <td><?php echo $inscricao->nome; ?></td>
-                            <td class="hidden-phone hidden-tablet"><?php echo $inscricao->telefone; ?></td>
-                            <td><?php echo $inscricao->getDivulgador()->nome; ?></td>
+                            <td><?php echo $lancamento->id; ?></td>
+                            <td><?php echo $lancamento->descricao; ?></td>
+                            <td><?php echo date("d/m/Y",strtotime($lancamento->dataVencimento)); ?></td>
+                            <td><?php echo Zend_Registry::get('currency')->toCurrency($lancamento->valor); ?></td>
                             <td>
-                                <?php echo ($inscricao->getSituacao() == 'Pendente' ? '<span class="badge badge-important">Pendente</span>' : '<span class="badge badge-success">Confirmado</span>'); ?>
+                                <?php echo ($lancamento->situacao == 0 ? '<span class="badge badge-important">Pendente</span>' : '<span class="badge badge-success">Pago</span>'); ?>
                             </td>
                             <td>
-                                <?php if ($inscricao->getSituacao() == 'Pendente'): ?>
-                                    <a href="/inscricoes/confirmar/id/<?php echo $inscricao->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-small btn-success" data-toggle="tooltip" title="Confirmar Pagamento"><i class="icon-arrow-up"></i></a>
+                                <?php if ($lancamento->situacao == 0): ?>
+                                    <a href="/lancamentos/baixar/id/<?php echo $lancamento->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-small btn-success" data-toggle="tooltip" title="Baixar Lançamento"><i class="icon-arrow-down"></i></a>
                                 <?php endif; ?>
 
-                                <?php if ($inscricao->getSituacao() == 'Pago'): ?>
-                                    <a href="/inscricoes/estornar/id/<?php echo $inscricao->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-small btn-warning"><i class="icon-arrow-down" title="Estornar Pagamento"></i></a>
+                                <?php if ($lancamento->situacao == 1): ?>
+                                    <a href="/lancamentos/estornar/id/<?php echo $lancamento->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-small btn-danger"><i class="icon-arrow-up" title="Estornar Pagamento"></i></a>
                                 <?php endif; ?>
 
-                                <a href="/inscricoes/editar/id/<?php echo $inscricao->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-small"><i class="icon-edit" title="Editar Inscrição"></i></a>
-                                <a href="/inscricoes/remover/id/<?php echo $inscricao->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-danger btn-small delete" title="Remover Inscrição"><i class="icon-remove-sign"></i></a>
+                                <?php if ($lancamento->situacao == 0): ?>
+                                    <a href="/lancamento/editar/id/<?php echo $lancamento->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-small"><i class="icon-edit" title="Editar Lançamento"></i></a>
+                                    <a href="/lancamento/remover/id/<?php echo $lancamento->id; ?>/evento/<?php echo $this->evento->id; ?>" class="btn btn-danger btn-small delete" title="Remover Lançamento"><i class="icon-remove-sign"></i></a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

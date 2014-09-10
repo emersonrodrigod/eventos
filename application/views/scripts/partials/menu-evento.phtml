@@ -9,12 +9,14 @@ $controlerName = $controller->getRequest()->getControllerName();
         <li <?php echo ($controlerName == 'eventos' ? 'class="active"' : ''); ?>><a href="/eventos/detalhes/id/<?php echo $this->evento->id; ?>">Página Inicial do evento</a></li>
         <li <?php echo ($controlerName == 'divulgadores' ? 'class="active"' : ''); ?>><a href="/divulgadores/evento/<?php echo $this->evento->id; ?>">Divulgadores</a></li>
         <li <?php echo ($controlerName == 'inscricoes' ? 'class="active"' : ''); ?>><a href="/inscricoes/evento/<?php echo $this->evento->id; ?>">Inscrições</a></li>
-        <li <?php echo ($controlerName == 'despesas' ? 'class="active"' : ''); ?>><a href="">Despesas</a></li>
+        <li <?php echo ($controlerName == 'lancamentos' ? 'class="active"' : ''); ?>><a href="/lancamentos/evento/<?php echo $this->evento->id; ?>">Despesas</a></li>
         <li <?php echo ($controlerName == 'tarefas' ? 'class="active"' : ''); ?>><a href="">Tarefas</a></li>
         <li>
             <a href="">Relatórios</a>
             <ul>
                 <li><a href="">À receber por Divulgador</a></li>
+                <li><a href="">Resumo Financeiro</a></li>
+                <li><a href="">Extrato de Caixa</a></li>
             </ul>
         </li>
     </ul>   

@@ -9,6 +9,7 @@
         <r0006 resource="default:eventos" />
         <r0007 resource="default:divulgadores" />
         <r0008 resource="default:inscricoes" />
+        <r0009 resource="default:lancamentos" />
     </resources>
     <roles>
         <r0001 role="guest" />
@@ -26,5 +27,6 @@
         <a0008 role="admin" resource="default:eventos" />
         <a0009 role="admin" resource="default:divulgadores" />
         <a0010 role="admin" resource="default:inscricoes" />
+        <a0011 role="admin" resource="default:lancamentos" />
     </allow>
 </acl>

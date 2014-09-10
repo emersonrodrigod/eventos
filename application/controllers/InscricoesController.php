@@ -66,4 +66,30 @@ class InscricoesController extends Zend_Controller_Action {
         }
     }
 
+    public function confirmarAction() {
+        $this->_helper->layout()->disableLayout();
+        $this->getHelper('viewRenderer')->setNoRender();
+        try {
+            $inscricao = new Inscricao();
+            $inscricao->confirma($this->getParam('id'));
+            $this->_helper->flashMessenger(array('success' => 'Inscrição Confirmada com sucesso!'));
+            $this->_redirect('/inscricoes/evento/' . $this->evento->id);
+        } catch (Zend_Db_Exception $exc) {
+            $this->_helper->flashMessenger(array('error' => 'Desculpe, ocorreu um erro: ' . $exc->getMessage()));
+        }
+    }
+
+    public function estornarAction() {
+        $this->_helper->layout()->disableLayout();
+        $this->getHelper('viewRenderer')->setNoRender();
+        try {
+            $inscricao = new Inscricao();
+            $inscricao->estorna($this->getParam('id'));
+            $this->_helper->flashMessenger(array('success' => 'Inscrição Estornada com sucesso!'));
+            $this->_redirect('/inscricoes/evento/' . $this->evento->id);
+        } catch (Zend_Db_Exception $exc) {
+            $this->_helper->flashMessenger(array('error' => 'Desculpe, ocorreu um erro: ' . $exc->getMessage()));
+        }
+    }
+
 }
